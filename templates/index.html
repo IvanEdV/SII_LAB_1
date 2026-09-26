@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/static/style.css">
+  <title>Экспертная система: прямой вывод</title>
+</head>
+<body>
+
+<header>
+  <h1>Экспертная система с прямой цепочкой рассуждений</h1>
+  <p>Подбор страны для отпуска. Правила хранятся в файле rules.txt</p>
+</header>
+
+<main>
+  <section>
+    <h2>База правил</h2>
+    <table id="rules-table">
+      <thead><tr><th>№</th><th>ЕСЛИ</th><th>ТО</th></tr></thead>
+      <tbody id="rules"></tbody>
+    </table>
+    <p class="hint" id="rules-empty" hidden>Правил пока нет. Добавьте первое ниже.</p>
+    <div class="pager" id="pager">
+      <button class="plain small" id="prev-btn">← Назад</button>
+      <span id="page-info"></span>
+      <button class="plain small" id="next-btn">Вперёд →</button>
+    </div>
+
+    <label for="rule-input" id="rule-label">Новое правило</label>
+    <input id="rule-input" placeholder="ЕСЛИ объект1=значение1 И объект2=значение2 ТО объект3=значение3">
+    <div class="row">
+      <button id="add-btn">Добавить</button>
+      <button id="save-btn" hidden>Сохранить</button>
+      <button class="plain" id="delete-btn" hidden>Удалить</button>
+      <button class="plain" id="cancel-btn" hidden>Отмена</button>
+    </div>
+    <p class="error" id="rules-error"></p>
+    <p class="hint">Щёлкните по правилу в таблице, чтобы изменить или удалить его.</p>
+  </section>
+
+  <section>
+    <h2>Вывод</h2>
+
+    <label for="facts">Стартовая ситуация (по одному факту в строке: объект=значение)</label>
+    <textarea id="facts">сезон=зима
+бюджет=средний</textarea>
+
+    <label for="goal">Цель (объект, значение которого нужно найти)</label>
+    <input id="goal" value="страна">
+
+    <div class="row"><button id="start-btn">Начать вывод</button></div>
+    <p class="error" id="start-error"></p>
+
+    <div id="status" hidden></div>
+
+    <h3>Рабочая память</h3>
+    <table>
+      <thead><tr><th>Объект</th><th>Значение</th></tr></thead>
+      <tbody id="wm"></tbody>
+    </table>
+    <p class="hint" id="wm-empty">Пусто.</p>
+
+    <h3>Сработавшие правила</h3>
+    <ol id="trace"></ol>
+    <p class="hint" id="trace-empty">Пока ни одно правило не сработало.</p>
+  </section>
+</main>
+
+<script src="/static/script.js"></script>
+</body>
+</html>
